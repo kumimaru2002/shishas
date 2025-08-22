@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>フレーバー詳細 | シーシャ管理</title>
+  <link rel="stylesheet" href="../src/styles/global.css">
+  <link rel="stylesheet" href="../src/styles/flavor-detail.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../pages/index.html" class="site-title">シーシャ管理</a>
+        <nav class="nav">
+          <a href="../pages/index.html" class="nav-link">ホーム</a>
+          <a href="../pages/shop-list.html" class="nav-link">店舗管理</a>
+          <a href="../pages/flavor-list.html" class="nav-link active">フレーバー管理</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- パンくずナビ -->
+  <nav class="breadcrumb">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li class="breadcrumb-item">
+          <a href="../pages/index.html" class="breadcrumb-link">ホーム</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="../pages/flavor-list.html" class="breadcrumb-link">フレーバー一覧</a>
+        </li>
+        <li class="breadcrumb-item">
+          <span class="breadcrumb-current" id="flavor-name-breadcrumb">フレーバー詳細</span>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- メインコンテンツ -->
+  <main class="main">
+    <div class="container">
+      <!-- ローディング表示 -->
+      <div class="loading-container" id="loading-container">
+        <div class="loading"></div>
+        <span>読み込み中...</span>
+      </div>
+
+      <!-- エラー表示 -->
+      <div class="error-state d-none" id="error-state">
+        <div class="error-icon">⚠️</div>
+        <h2 class="error-title">エラーが発生しました</h2>
+        <p class="error-description" id="error-message">
+          フレーバーの読み込み中にエラーが発生しました。
+        </p>
+        <div class="error-actions">
+          <button type="button" class="btn btn-primary" id="retry-btn">
+            再試行
+          </button>
+          <a href="../pages/flavor-list.html" class="btn btn-secondary">
+            フレーバー一覧に戻る
+          </a>
+        </div>
+      </div>
+
+      <!-- フレーバー詳細 -->
+      <div class="flavor-detail d-none" id="flavor-detail">
+        <!-- ページヘッダー -->
+        <div class="page-header">
+          <div class="page-header-content">
+            <div class="page-title-section">
+              <h1 class="page-title" id="flavor-name">フレーバー名</h1>
+              <div class="flavor-rating">
+                <span class="flavor-stars" id="flavor-stars">★★★☆☆</span>
+                <span class="flavor-score" id="flavor-score">3点</span>
+              </div>
+            </div>
+            <div class="page-actions">
+              <a href="../pages/flavor-edit.html" class="btn btn-secondary" id="edit-flavor-btn">
+                編集
+              </a>
+              <button type="button" class="btn btn-danger" id="delete-flavor-btn">
+                削除
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- フレーバー詳細情報 -->
+        <div class="flavor-details-grid">
+          <!-- 基本情報 -->
+          <div class="detail-card">
+            <div class="detail-card-header">
+              <h3 class="detail-card-title">基本情報</h3>
+            </div>
+            <div class="detail-card-body">
+              <div class="detail-row">
+                <div class="detail-label">フレーバー組み合わせ</div>
+                <div class="detail-value">
+                  <div class="flavor-ingredients" id="flavor-ingredients">
+                    <!-- フレーバータグがここに表示されます -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="detail-row" id="shop-row">
+                <div class="detail-label">喫煙店舗</div>
+                <div class="detail-value">
+                  <div class="flavor-shop">
+                    <span class="flavor-shop-icon">🏪</span>
+                    <a href="#" class="flavor-shop-link" id="shop-link">
+                      <span id="shop-name">店舗名</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="detail-row" id="smoked-at-row">
+                <div class="detail-label">喫煙日時</div>
+                <div class="detail-value">
+                  <span id="smoked-at">2024年1月1日 12:00</span>
+                </div>
+              </div>
+
+              <div class="detail-row" id="tags-row">
+                <div class="detail-label">タグ</div>
+                <div class="detail-value">
+                  <div class="flavor-tags" id="flavor-tags">
+                    <!-- タグがここに表示されます -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- メモ -->
+          <div class="detail-card" id="memo-card">
+            <div class="detail-card-header">
+              <h3 class="detail-card-title">メモ</h3>
+            </div>
+            <div class="detail-card-body">
+              <div class="flavor-memo" id="flavor-memo">
+                <!-- メモがここに表示されます -->
+              </div>
+            </div>
+          </div>
+
+          <!-- 履歴情報 -->
+          <div class="detail-card">
+            <div class="detail-card-header">
+              <h3 class="detail-card-title">履歴情報</h3>
+            </div>
+            <div class="detail-card-body">
+              <div class="detail-row">
+                <div class="detail-label">作成日時</div>
+                <div class="detail-value">
+                  <span id="created-at">2024年1月1日 12:00</span>
+                </div>
+              </div>
+
+              <div class="detail-row" id="updated-at-row">
+                <div class="detail-label">更新日時</div>
+                <div class="detail-value">
+                  <span id="updated-at">2024年1月1日 12:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 削除確認モーダル -->
+  <div class="modal-overlay d-none" id="delete-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">フレーバーの削除</h2>
+        </div>
+        <div class="modal-body">
+          <p>「<span id="delete-flavor-name"></span>」を削除しますか？</p>
+          <p class="text-danger">この操作は取り消すことができません。</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="cancel-delete">
+            キャンセル
+          </button>
+          <button type="button" class="btn btn-danger" id="confirm-delete">
+            削除
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../src/scripts/storage.js"></script>
+  <script src="../src/scripts/flavor-detail.js"></script>
+</body>
+</html>

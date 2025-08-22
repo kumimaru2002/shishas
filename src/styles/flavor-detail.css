@@ -1,0 +1,309 @@
+/* フレーバー詳細画面のスタイル */
+
+/* ローディング */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  color: #6c757d;
+}
+
+.loading {
+  width: 3rem;
+  height: 3rem;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* エラー状態 */
+.error-state {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.error-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.error-title {
+  font-size: 1.75rem;
+  color: #dc3545;
+  margin-bottom: 1rem;
+}
+
+.error-description {
+  color: #6c757d;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.error-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ページヘッダー */
+.page-header {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  padding: 2rem;
+}
+
+.page-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.page-title-section {
+  flex: 1;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  word-break: break-word;
+}
+
+.page-actions {
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+/* フレーバー評価 */
+.flavor-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.flavor-stars {
+  font-size: 1.25rem;
+  color: #ffc107;
+}
+
+.flavor-score {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #495057;
+}
+
+/* 詳細グリッド */
+.flavor-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+/* 詳細カード */
+.detail-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.detail-card-header {
+  background-color: #f8f9fa;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.detail-card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #495057;
+  margin: 0;
+}
+
+.detail-card-body {
+  padding: 1.5rem;
+}
+
+/* 詳細行 */
+.detail-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.detail-row:last-child {
+  margin-bottom: 0;
+}
+
+.detail-label {
+  min-width: 120px;
+  font-weight: 600;
+  color: #495057;
+  flex-shrink: 0;
+}
+
+.detail-value {
+  flex: 1;
+  min-width: 0;
+}
+
+/* フレーバー要素 */
+.flavor-ingredients {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.flavor-ingredient-tag {
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* 店舗情報 */
+.flavor-shop {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.flavor-shop-icon {
+  font-size: 1.125rem;
+}
+
+.flavor-shop-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.flavor-shop-link:hover {
+  text-decoration: underline;
+}
+
+/* タグ */
+.flavor-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.flavor-tag {
+  background-color: #6c757d;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* メモ */
+.flavor-memo {
+  color: #495057;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* メモカード全体のスタイル */
+#memo-card .detail-card-body {
+  padding: 1.5rem;
+}
+
+#memo-card.empty {
+  opacity: 0.7;
+}
+
+#memo-card.empty .flavor-memo {
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* アラート（メッセージ表示） */
+.alert {
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+}
+
+.alert-success {
+  background-color: #d1edff;
+  border: 1px solid #0ea5e9;
+  color: #0369a1;
+}
+
+.alert-danger {
+  background-color: #fed7d7;
+  border: 1px solid #e53e3e;
+  color: #c53030;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .page-header-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+  
+  .page-actions {
+    justify-content: center;
+  }
+  
+  .flavor-details-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .detail-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .detail-label {
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header {
+    padding: 1.5rem;
+  }
+  
+  .page-title {
+    font-size: 1.5rem;
+  }
+  
+  .detail-card-body {
+    padding: 1rem;
+  }
+  
+  .detail-card-header {
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* ユーティリティクラス */
+.d-none {
+  display: none !important;
+}

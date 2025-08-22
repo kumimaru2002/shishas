@@ -450,3 +450,10 @@
     gap: 0.25rem;
   }
 }
+
+/* フレーバー詳細リンク */
+.flavor-detail-link {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e9ecef;
+}

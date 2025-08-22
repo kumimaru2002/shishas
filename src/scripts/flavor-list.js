@@ -249,6 +249,12 @@ class FlavorListController {
             </div>
           ` : ''}
           
+          <div class="flavor-detail-link">
+            <a href="../pages/flavor-detail.html?id=${flavor.id}" class="btn btn-sm btn-outline-primary">
+              詳細を見る
+            </a>
+          </div>
+          
           ${flavor.memo ? `
             <div class="flavor-memo">
               ${this.escapeHtml(flavor.memo)}
