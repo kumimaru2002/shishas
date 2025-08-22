@@ -180,7 +180,7 @@ class HomeController {
     const stars = '★'.repeat(flavor.score) + '☆'.repeat(5 - flavor.score);
 
     return `
-      <a href="../pages/flavor-edit.html?id=${flavor.id}" class="featured-item">
+      <a href="../flavor-edit.html?id=${flavor.id}" class="featured-item">
         <div class="featured-item-title">${this.escapeHtml(flavor.name)}</div>
         <div class="featured-item-rating">${stars}</div>
         ${relatedShop ? `

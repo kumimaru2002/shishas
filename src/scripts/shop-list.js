@@ -142,7 +142,7 @@ class ShopListController {
         <div class="shop-card-header">
           <h3 class="shop-card-title">${this.escapeHtml(shop.name)}</h3>
           <div class="shop-card-actions">
-            <a href="../pages/shop-edit.html?id=${shop.id}" class="btn btn-sm btn-secondary">
+            <a href="../shop-edit.html?id=${shop.id}" class="btn btn-sm btn-secondary">
               編集
             </a>
             <button 
