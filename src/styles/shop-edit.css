@@ -1,0 +1,277 @@
+/* 店舗編集画面専用スタイル */
+
+.shop-edit-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.shop-edit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.shop-edit-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.shop-edit-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.shop-edit-form {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-col {
+  flex: 1;
+}
+
+.form-col-full {
+  flex: 1 1 100%;
+}
+
+.form-col-half {
+  flex: 1 1 50%;
+}
+
+.form-control-group {
+  position: relative;
+}
+
+.form-control-with-icon {
+  padding-left: 2.5rem;
+}
+
+.form-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c757d;
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.character-count {
+  font-size: 0.75rem;
+  color: #6c757d;
+  text-align: right;
+  margin-top: 0.25rem;
+}
+
+.character-count.warning {
+  color: #f39c12;
+}
+
+.character-count.danger {
+  color: #e74c3c;
+}
+
+.form-help-text {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-top: 0.25rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.preview-section {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.preview-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.shop-preview-card {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.shop-preview-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.shop-preview-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.shop-preview-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #495057;
+}
+
+.shop-preview-icon {
+  color: #6c757d;
+  width: 16px;
+}
+
+.shop-preview-memo {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #dee2e6;
+  font-size: 0.875rem;
+  color: #495057;
+  line-height: 1.6;
+}
+
+.validation-summary {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  color: #721c24;
+}
+
+.validation-summary.success {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.validation-list {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.validation-list li {
+  margin-bottom: 0.25rem;
+}
+
+.save-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.save-indicator.saving {
+  color: #3498db;
+}
+
+.save-indicator.saved {
+  color: #27ae60;
+}
+
+.save-indicator.error {
+  color: #e74c3c;
+}
+
+.form-section {
+  margin-bottom: 2rem;
+}
+
+.form-section:last-child {
+  margin-bottom: 0;
+}
+
+.form-section-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #3498db;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .shop-edit-container {
+    padding: 0 1rem;
+  }
+  
+  .shop-edit-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .shop-edit-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .shop-edit-form {
+    padding: 1.5rem 1rem;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .form-col-half {
+    flex: 1 1 100%;
+  }
+  
+  .form-actions {
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+  }
+  
+  .form-actions .btn {
+    width: 100%;
+    margin: 0;
+  }
+  
+  .shop-preview-info {
+    font-size: 0.875rem;
+  }
+  
+  .character-count {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .shop-edit-title {
+    font-size: 1.5rem;
+  }
+  
+  .form-section-title {
+    font-size: 1rem;
+  }
+  
+  .shop-preview-name {
+    font-size: 1.125rem;
+  }
+}

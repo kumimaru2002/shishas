@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>店舗編集 | シーシャ管理</title>
+  <link rel="stylesheet" href="../src/styles/global.css">
+  <link rel="stylesheet" href="../src/styles/shop-edit.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../pages/index.html" class="site-title">シーシャ管理</a>
+        <nav class="nav">
+          <a href="../pages/index.html" class="nav-link">ホーム</a>
+          <a href="../pages/shop-list.html" class="nav-link active">店舗管理</a>
+          <a href="../pages/flavor-list.html" class="nav-link">フレーバー管理</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- パンくずナビ -->
+  <nav class="breadcrumb">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li class="breadcrumb-item">
+          <a href="../pages/index.html" class="breadcrumb-link">ホーム</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="../pages/shop-list.html" class="breadcrumb-link">店舗一覧</a>
+        </li>
+        <li class="breadcrumb-item">
+          <span class="breadcrumb-current" id="breadcrumb-current">新規店舗</span>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- メインコンテンツ -->
+  <main class="main">
+    <div class="container">
+      <div class="shop-edit-container">
+        <!-- ヘッダー -->
+        <div class="shop-edit-header">
+          <h1 class="shop-edit-title" id="page-title">新規店舗の追加</h1>
+          <div class="shop-edit-actions">
+            <div class="save-indicator" id="save-indicator">
+              <span class="loading d-none" id="save-loading"></span>
+              <span id="save-status"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- バリデーションサマリー -->
+        <div class="validation-summary d-none" id="validation-summary">
+          <strong>入力内容を確認してください：</strong>
+          <ul class="validation-list" id="validation-list"></ul>
+        </div>
+
+        <!-- 成功メッセージ -->
+        <div class="alert alert-success d-none" id="success-message">
+          店舗情報を保存しました。
+        </div>
+
+        <!-- エラーメッセージ -->
+        <div class="alert alert-danger d-none" id="error-message">
+          <span id="error-text">保存中にエラーが発生しました。</span>
+        </div>
+
+        <!-- フォーム -->
+        <form class="shop-edit-form" id="shop-form" novalidate>
+          <!-- 基本情報セクション -->
+          <div class="form-section">
+            <h2 class="form-section-title">基本情報</h2>
+            
+            <!-- 店舗名 -->
+            <div class="form-group">
+              <label for="shop-name" class="form-label required">店舗名</label>
+              <div class="form-control-group">
+                <input
+                  type="text"
+                  id="shop-name"
+                  name="name"
+                  class="form-control"
+                  placeholder="店舗名を入力してください"
+                  maxlength="100"
+                  required
+                  autocomplete="organization"
+                >
+                <div class="invalid-feedback" id="name-error"></div>
+                <div class="character-count">
+                  <span id="name-count">0</span>/100文字
+                </div>
+              </div>
+            </div>
+
+            <!-- 住所と電話番号 -->
+            <div class="form-row">
+              <div class="form-col">
+                <div class="form-group">
+                  <label for="shop-address" class="form-label">住所</label>
+                  <div class="form-control-group">
+                    <input
+                      type="text"
+                      id="shop-address"
+                      name="address"
+                      class="form-control"
+                      placeholder="東京都渋谷区..."
+                      maxlength="500"
+                      autocomplete="street-address"
+                    >
+                    <div class="invalid-feedback" id="address-error"></div>
+                    <div class="character-count">
+                      <span id="address-count">0</span>/500文字
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-col">
+                <div class="form-group">
+                  <label for="shop-phone" class="form-label">電話番号</label>
+                  <div class="form-control-group">
+                    <input
+                      type="tel"
+                      id="shop-phone"
+                      name="phone"
+                      class="form-control"
+                      placeholder="03-1234-5678"
+                      autocomplete="tel"
+                    >
+                    <div class="invalid-feedback" id="phone-error"></div>
+                    <div class="form-help-text">例：03-1234-5678</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 詳細情報セクション -->
+          <div class="form-section">
+            <h2 class="form-section-title">詳細情報</h2>
+            
+            <!-- 営業時間とウェブサイト -->
+            <div class="form-row">
+              <div class="form-col">
+                <div class="form-group">
+                  <label for="shop-hours" class="form-label">営業時間</label>
+                  <div class="form-control-group">
+                    <input
+                      type="text"
+                      id="shop-hours"
+                      name="openingHours"
+                      class="form-control"
+                      placeholder="12:00-24:00"
+                    >
+                    <div class="invalid-feedback" id="hours-error"></div>
+                    <div class="form-help-text">例：12:00-24:00、月-金 18:00-02:00</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-col">
+                <div class="form-group">
+                  <label for="shop-website" class="form-label">ウェブサイト</label>
+                  <div class="form-control-group">
+                    <input
+                      type="url"
+                      id="shop-website"
+                      name="website"
+                      class="form-control"
+                      placeholder="https://example.com"
+                      autocomplete="url"
+                    >
+                    <div class="invalid-feedback" id="website-error"></div>
+                    <div class="form-help-text">https://から始まるURLを入力してください</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- メモ -->
+            <div class="form-group">
+              <label for="shop-memo" class="form-label">メモ</label>
+              <div class="form-control-group">
+                <textarea
+                  id="shop-memo"
+                  name="memo"
+                  class="form-control"
+                  rows="4"
+                  placeholder="店舗の雰囲気、おすすめポイント、アクセス情報など..."
+                  maxlength="1000"
+                ></textarea>
+                <div class="invalid-feedback" id="memo-error"></div>
+                <div class="character-count">
+                  <span id="memo-count">0</span>/1000文字
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- プレビューセクション -->
+          <div class="preview-section" id="preview-section">
+            <h2 class="preview-title">プレビュー</h2>
+            <div class="shop-preview-card" id="shop-preview">
+              <div class="shop-preview-name" id="preview-name">店舗名が入力されていません</div>
+              <div class="shop-preview-info">
+                <div class="shop-preview-item" id="preview-address" style="display: none;">
+                  <span class="shop-preview-icon">📍</span>
+                  <span id="preview-address-text"></span>
+                </div>
+                <div class="shop-preview-item" id="preview-phone" style="display: none;">
+                  <span class="shop-preview-icon">📞</span>
+                  <span id="preview-phone-text"></span>
+                </div>
+                <div class="shop-preview-item" id="preview-hours" style="display: none;">
+                  <span class="shop-preview-icon">🕒</span>
+                  <span id="preview-hours-text"></span>
+                </div>
+                <div class="shop-preview-item" id="preview-website" style="display: none;">
+                  <span class="shop-preview-icon">🌐</span>
+                  <a href="" target="_blank" rel="noopener noreferrer" id="preview-website-text"></a>
+                </div>
+              </div>
+              <div class="shop-preview-memo" id="preview-memo" style="display: none;">
+                <span id="preview-memo-text"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- フォームアクション -->
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" id="cancel-btn">
+              キャンセル
+            </button>
+            <button type="submit" class="btn btn-primary" id="save-btn">
+              <span class="loading d-none" id="submit-loading"></span>
+              <span id="submit-text">保存</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="../src/scripts/shop-edit.js"></script>
+</body>
+</html>
