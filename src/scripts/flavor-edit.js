@@ -453,7 +453,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function showSuccess(message) {
-    successMessage.querySelector('#success-message').textContent = message;
+    const messageText = successMessage.querySelector('span') || successMessage;
+    messageText.textContent = message;
     successMessage.classList.remove('d-none');
     errorMessage.classList.add('d-none');
     successMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });

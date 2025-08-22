@@ -1,0 +1,452 @@
+/* ページヘッダー */
+.page-header {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+}
+
+.page-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.page-title-section {
+  flex: 1;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.flavor-count {
+  color: #6c757d;
+  font-size: 0.875rem;
+}
+
+.page-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* 検索・フィルターセクション */
+.search-section {
+  margin-bottom: 2rem;
+}
+
+.search-container {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.search-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.search-group {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.filter-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+}
+
+/* フレーバー一覧 */
+.flavors-section {
+  position: relative;
+}
+
+.flavors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* フレーバーカード */
+.flavor-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.flavor-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.flavor-card-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e9ecef;
+  background-color: #f8f9fa;
+}
+
+.flavor-card-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.flavor-card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+  flex: 1;
+  word-break: break-word;
+}
+
+.flavor-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.flavor-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.flavor-stars {
+  color: #ffc107;
+  font-size: 1rem;
+}
+
+.flavor-score {
+  color: #6c757d;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.flavor-card-body {
+  padding: 1.25rem;
+}
+
+.flavor-ingredients {
+  margin-bottom: 1rem;
+}
+
+.flavor-ingredients-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 0.5rem;
+}
+
+.flavor-ingredients-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.flavor-ingredient-tag {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid #bbdefb;
+}
+
+.flavor-shop {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.flavor-shop-icon {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.flavor-shop-link {
+  color: #3498db;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.flavor-shop-link:hover {
+  text-decoration: underline;
+}
+
+.flavor-memo {
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  padding: 0.75rem;
+  color: #495057;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 1rem;
+}
+
+.flavor-tags {
+  margin-bottom: 1rem;
+}
+
+.flavor-tags-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 0.5rem;
+}
+
+.flavor-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.flavor-tag {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid #e1bee7;
+}
+
+.flavor-card-footer {
+  padding: 0.75rem 1.25rem;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+}
+
+.flavor-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: #6c757d;
+}
+
+.flavor-dates {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.flavor-smoked-at {
+  font-weight: 500;
+  color: #495057;
+}
+
+/* 空状態・ローディング */
+.loading-container,
+.empty-state,
+.no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.loading-container.d-none,
+.empty-state.d-none,
+.no-results.d-none {
+  display: none !important;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.empty-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.empty-description {
+  color: #6c757d;
+  margin-bottom: 1.5rem;
+  max-width: 400px;
+}
+
+.loading-container {
+  padding: 2rem;
+}
+
+.loading-container .loading {
+  margin-right: 0.5rem;
+}
+
+/* モーダル */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  padding: 1rem;
+}
+
+.modal-overlay.d-none {
+  display: none !important;
+}
+
+.modal-dialog {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.modal-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.modal-body {
+  padding: 1.25rem;
+}
+
+.modal-body p {
+  margin-bottom: 0.75rem;
+}
+
+.modal-body p:last-child {
+  margin-bottom: 0;
+}
+
+.text-danger {
+  color: #e74c3c;
+  font-size: 0.875rem;
+}
+
+.modal-footer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .flavors-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .page-header-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .page-actions {
+    justify-content: center;
+  }
+  
+  .search-row {
+    gap: 1.5rem;
+  }
+  
+  .search-group {
+    flex-direction: column;
+  }
+  
+  .filter-group {
+    grid-template-columns: 1fr;
+  }
+  
+  .flavor-card-title-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  
+  .flavor-card-actions {
+    justify-content: flex-end;
+  }
+  
+  .flavor-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .modal-dialog {
+    margin: 0;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header {
+    padding: 1rem;
+  }
+  
+  .search-container {
+    padding: 1rem;
+  }
+  
+  .flavor-card-header,
+  .flavor-card-body,
+  .flavor-card-footer {
+    padding: 1rem;
+  }
+  
+  .empty-state,
+  .no-results {
+    padding: 2rem 1rem;
+  }
+  
+  .empty-icon {
+    font-size: 2.5rem;
+  }
+  
+  .flavor-ingredients-tags,
+  .flavor-tags-container {
+    gap: 0.25rem;
+  }
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>フレーバー一覧 | シーシャ管理</title>
+  <link rel="stylesheet" href="../src/styles/global.css">
+  <link rel="stylesheet" href="../src/styles/flavor-list.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../pages/index.html" class="site-title">シーシャ管理</a>
+        <nav class="nav">
+          <a href="../pages/index.html" class="nav-link">ホーム</a>
+          <a href="../pages/shop-list.html" class="nav-link">店舗管理</a>
+          <a href="../pages/flavor-list.html" class="nav-link active">フレーバー管理</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- パンくずナビ -->
+  <nav class="breadcrumb">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li class="breadcrumb-item">
+          <a href="../pages/index.html" class="breadcrumb-link">ホーム</a>
+        </li>
+        <li class="breadcrumb-item">
+          <span class="breadcrumb-current">フレーバー一覧</span>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- メインコンテンツ -->
+  <main class="main">
+    <div class="container">
+      <!-- ページヘッダー -->
+      <div class="page-header">
+        <div class="page-header-content">
+          <div class="page-title-section">
+            <h1 class="page-title">フレーバー一覧</h1>
+            <div class="flavor-count">
+              <span id="flavor-count">0</span>件のフレーバー
+            </div>
+          </div>
+          <div class="page-actions">
+            <a href="../pages/flavor-edit.html" class="btn btn-primary">
+              新規フレーバー追加
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 検索・フィルターエリア -->
+      <div class="search-section">
+        <div class="search-container">
+          <div class="search-row">
+            <div class="search-group">
+              <input
+                type="text"
+                id="search-input"
+                class="form-control search-input"
+                placeholder="フレーバー名、メモで検索..."
+              >
+              <button type="button" class="btn btn-secondary" id="clear-search">
+                クリア
+              </button>
+            </div>
+            
+            <div class="filter-group">
+              <select id="score-filter" class="form-control">
+                <option value="">評価すべて</option>
+                <option value="5">★★★★★ (5点)</option>
+                <option value="4">★★★★☆ (4点以上)</option>
+                <option value="3">★★★☆☆ (3点以上)</option>
+                <option value="2">★★☆☆☆ (2点以上)</option>
+                <option value="1">★☆☆☆☆ (1点以上)</option>
+              </select>
+              
+              <select id="shop-filter" class="form-control">
+                <option value="">店舗すべて</option>
+              </select>
+              
+              <select id="sort-select" class="form-control">
+                <option value="createdAt:desc">作成日時（新しい順）</option>
+                <option value="createdAt:asc">作成日時（古い順）</option>
+                <option value="updatedAt:desc">更新日時（新しい順）</option>
+                <option value="updatedAt:asc">更新日時（古い順）</option>
+                <option value="score:desc">評価（高い順）</option>
+                <option value="score:asc">評価（低い順）</option>
+                <option value="name:asc">名前（あいうえお順）</option>
+                <option value="name:desc">名前（逆順）</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- フレーバー一覧 -->
+      <div class="flavors-section">
+        <!-- ローディング表示 -->
+        <div class="loading-container d-none" id="loading-container">
+          <div class="loading"></div>
+          <span>読み込み中...</span>
+        </div>
+
+        <!-- 空状態 -->
+        <div class="empty-state d-none" id="empty-state">
+          <div class="empty-icon">🫖</div>
+          <h3 class="empty-title">フレーバーが登録されていません</h3>
+          <p class="empty-description">
+            新しいフレーバーを追加して、お気に入りの味を記録しましょう。
+          </p>
+          <a href="../pages/flavor-edit.html" class="btn btn-primary">
+            最初のフレーバーを追加
+          </a>
+        </div>
+
+        <!-- 検索結果なし -->
+        <div class="no-results d-none" id="no-results">
+          <div class="empty-icon">🔍</div>
+          <h3 class="empty-title">検索結果が見つかりません</h3>
+          <p class="empty-description">
+            検索条件やフィルターを変更して再度お試しください。
+          </p>
+        </div>
+
+        <!-- フレーバーグリッド -->
+        <div class="flavors-grid" id="flavors-grid">
+          <!-- フレーバーカードがここに動的に追加されます -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 削除確認モーダル -->
+  <div class="modal-overlay d-none" id="delete-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">フレーバーの削除</h2>
+        </div>
+        <div class="modal-body">
+          <p>「<span id="delete-flavor-name"></span>」を削除しますか？</p>
+          <p class="text-danger">この操作は取り消すことができません。</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="cancel-delete">
+            キャンセル
+          </button>
+          <button type="button" class="btn btn-danger" id="confirm-delete">
+            削除
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../src/scripts/storage.js"></script>
+  <script src="../src/scripts/flavor-list.js"></script>
+</body>
+</html>
