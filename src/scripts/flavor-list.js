@@ -211,7 +211,7 @@ class FlavorListController {
           <div class="flavor-card-title-row">
             <h3 class="flavor-card-title">${this.escapeHtml(flavor.name)}</h3>
             <div class="flavor-card-actions">
-              <a href="../flavor-edit.html?id=${flavor.id}" class="btn btn-sm btn-secondary">
+              <a href="./flavor-edit.html?id=${flavor.id}" class="btn btn-sm btn-secondary">
                 編集
               </a>
               <button 
@@ -243,14 +243,14 @@ class FlavorListController {
           ${relatedShop ? `
             <div class="flavor-shop">
               <span class="flavor-shop-icon">🏪</span>
-              <a href="../shop-detail.html?id=${relatedShop.id}" class="flavor-shop-link">
+              <a href="./shop-detail.html?id=${relatedShop.id}" class="flavor-shop-link">
                 ${this.escapeHtml(relatedShop.name)}
               </a>
             </div>
           ` : ''}
           
           <div class="flavor-detail-link">
-            <a href="../flavor-detail.html?id=${flavor.id}" class="btn btn-sm btn-outline-primary">
+            <a href="./flavor-detail.html?id=${flavor.id}" class="btn btn-sm btn-outline-primary">
               詳細を見る
             </a>
           </div>

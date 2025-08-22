@@ -135,7 +135,7 @@ class FlavorDetailController {
     this.elements.flavorScore.textContent = `${this.flavor.score}点`;
     
     // 編集リンク更新
-    this.elements.editFlavorBtn.href = `../flavor-edit.html?id=${this.flavor.id}`;
+    this.elements.editFlavorBtn.href = `./flavor-edit.html?id=${this.flavor.id}`;
     
     // フレーバー組み合わせ
     this.renderFlavorIngredients();
@@ -181,7 +181,7 @@ class FlavorDetailController {
     
     this.elements.shopRow.style.display = 'flex';
     this.elements.shopName.textContent = shop.name;
-    this.elements.shopLink.href = `../shop-detail.html?id=${shop.id}`;
+    this.elements.shopLink.href = `./shop-detail.html?id=${shop.id}`;
   }
 
   renderSmokedAt() {
@@ -251,7 +251,7 @@ class FlavorDetailController {
       
       if (success) {
         this.hideDeleteModal();
-        this.showSuccessAndRedirect('フレーバーを削除しました。', '../flavor-list.html');
+        this.showSuccessAndRedirect('フレーバーを削除しました。', './flavor-list.html');
       } else {
         this.showAlert('フレーバーの削除に失敗しました。', 'danger');
       }

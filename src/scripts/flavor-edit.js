@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // キャンセル
     cancelBtn.addEventListener('click', () => {
-      window.location.href = '../flavor-list.html';
+      window.location.href = './flavor-list.html';
     });
 
     // フレーバー組み合わせの追加
@@ -518,7 +518,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // 3秒後にフレーバー詳細画面に遷移
       setTimeout(() => {
-        window.location.href = `../flavor-detail.html?id=${savedFlavor.id}`;
+        window.location.href = `./flavor-detail.html?id=${savedFlavor.id}`;
       }, 2000);
 
     } catch (error) {
