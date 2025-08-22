@@ -1,11 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Hello World</h1>
-  </body>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>シーシャ管理 | ホーム</title>
+  <link rel="stylesheet" href="../src/styles/global.css">
+  <link rel="stylesheet" href="../src/styles/index.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../pages/index.html" class="site-title">シーシャ管理</a>
+        <nav class="nav">
+          <a href="../pages/index.html" class="nav-link active">ホーム</a>
+          <a href="../pages/shop-list.html" class="nav-link">店舗管理</a>
+          <a href="../pages/flavor-list.html" class="nav-link">フレーバー管理</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="main">
+    <div class="container">
+      <!-- ヘロセクション -->
+      <section class="hero-section">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <span class="hero-emoji">🫖</span>
+            シーシャ管理
+          </h1>
+          <p class="hero-description">
+            お気に入りの店舗とフレーバーを記録して、最高のシーシャ体験を管理しましょう
+          </p>
+        </div>
+      </section>
+
+      <!-- 統計カード -->
+      <section class="stats-section">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">🏪</div>
+            <div class="stat-content">
+              <div class="stat-number" id="total-shops">0</div>
+              <div class="stat-label">登録店舗数</div>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">🫖</div>
+            <div class="stat-content">
+              <div class="stat-number" id="total-flavors">0</div>
+              <div class="stat-label">登録フレーバー数</div>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">⭐</div>
+            <div class="stat-content">
+              <div class="stat-number" id="average-rating">-</div>
+              <div class="stat-label">平均評価</div>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">🔥</div>
+            <div class="stat-content">
+              <div class="stat-number" id="high-rated-count">0</div>
+              <div class="stat-label">高評価フレーバー<br><small>(4点以上)</small></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- クイックアクション -->
+      <section class="quick-actions-section">
+        <h2 class="section-title">クイックアクション</h2>
+        <div class="quick-actions-grid">
+          <a href="../pages/shop-edit.html" class="action-card">
+            <div class="action-icon">🏪</div>
+            <div class="action-content">
+              <h3 class="action-title">新規店舗追加</h3>
+              <p class="action-description">新しいシーシャ店を登録</p>
+            </div>
+            <div class="action-arrow">→</div>
+          </a>
+          
+          <a href="../pages/flavor-edit.html" class="action-card">
+            <div class="action-icon">🫖</div>
+            <div class="action-content">
+              <h3 class="action-title">新規フレーバー追加</h3>
+              <p class="action-description">新しいフレーバーを記録</p>
+            </div>
+            <div class="action-arrow">→</div>
+          </a>
+          
+          <a href="../pages/shop-list.html" class="action-card">
+            <div class="action-icon">📋</div>
+            <div class="action-content">
+              <h3 class="action-title">店舗一覧を見る</h3>
+              <p class="action-description">登録済みの店舗を確認</p>
+            </div>
+            <div class="action-arrow">→</div>
+          </a>
+          
+          <a href="../pages/flavor-list.html" class="action-card">
+            <div class="action-icon">🔍</div>
+            <div class="action-content">
+              <h3 class="action-title">フレーバーを探す</h3>
+              <p class="action-description">お気に入りを見つける</p>
+            </div>
+            <div class="action-arrow">→</div>
+          </a>
+        </div>
+      </section>
+
+      <!-- 最新データセクション -->
+      <div class="recent-data-container">
+        <!-- 最近の店舗 -->
+        <section class="recent-section">
+          <div class="section-header">
+            <h2 class="section-title">最近追加した店舗</h2>
+            <a href="../pages/shop-list.html" class="section-link">すべて見る</a>
+          </div>
+          <div class="recent-content">
+            <div class="recent-items" id="recent-shops">
+              <!-- 動的に生成されます -->
+            </div>
+          </div>
+        </section>
+
+        <!-- 最近のフレーバー -->
+        <section class="recent-section">
+          <div class="section-header">
+            <h2 class="section-title">最近追加したフレーバー</h2>
+            <a href="../pages/flavor-list.html" class="section-link">すべて見る</a>
+          </div>
+          <div class="recent-content">
+            <div class="recent-items" id="recent-flavors">
+              <!-- 動的に生成されます -->
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- 高評価フレーバー -->
+      <section class="featured-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="section-emoji">⭐</span>
+            高評価フレーバー
+          </h2>
+          <a href="../pages/flavor-list.html?filter=high-rated" class="section-link">すべて見る</a>
+        </div>
+        <div class="featured-content">
+          <div class="featured-grid" id="high-rated-flavors">
+            <!-- 動的に生成されます -->
+          </div>
+        </div>
+      </section>
+
+      <!-- 空状態 -->
+      <section class="empty-state-section d-none" id="empty-state">
+        <div class="empty-state">
+          <div class="empty-icon">🎯</div>
+          <h3 class="empty-title">シーシャ管理を始めましょう</h3>
+          <p class="empty-description">
+            まずは最初の店舗やフレーバーを登録して、あなたのシーシャライフを記録し始めましょう。
+          </p>
+          <div class="empty-actions">
+            <a href="../pages/shop-edit.html" class="btn btn-primary">最初の店舗を追加</a>
+            <a href="../pages/flavor-edit.html" class="btn btn-secondary">最初のフレーバーを追加</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="../src/scripts/storage.js"></script>
+  <script src="../src/scripts/index.js"></script>
+</body>
 </html>
