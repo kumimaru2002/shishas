@@ -261,6 +261,52 @@ function validateShopData(data) {
   };
 }
 
+function validateFlavorData(data) {
+  const errors = [];
+  
+  if (!data.name || data.name.trim().length === 0) {
+    errors.push('フレーバー名は必須です');
+  } else if (data.name.length > 100) {
+    errors.push('フレーバー名は100文字以内で入力してください');
+  }
+  
+  if (!data.flavors || !Array.isArray(data.flavors) || data.flavors.length === 0) {
+    errors.push('フレーバーの組み合わせは1つ以上入力してください');
+  } else if (data.flavors.some(flavor => !flavor || flavor.trim().length === 0)) {
+    errors.push('フレーバーの組み合わせに空の項目があります');
+  }
+  
+  if (!data.score || ![1, 2, 3, 4, 5].includes(Number(data.score))) {
+    errors.push('評価は1-5の値を選択してください');
+  }
+  
+  if (data.shopId && typeof data.shopId !== 'string') {
+    errors.push('関連店舗の形式が正しくありません');
+  }
+  
+  if (data.memo && data.memo.length > 1000) {
+    errors.push('メモは1000文字以内で入力してください');
+  }
+  
+  if (data.tags && Array.isArray(data.tags)) {
+    if (data.tags.some(tag => !tag || tag.trim().length === 0)) {
+      errors.push('タグに空の項目があります');
+    }
+    if (data.tags.some(tag => tag.length > 50)) {
+      errors.push('各タグは50文字以内で入力してください');
+    }
+  }
+  
+  if (data.smokedAt && !(data.smokedAt instanceof Date) && isNaN(Date.parse(data.smokedAt))) {
+    errors.push('喫煙日時の形式が正しくありません');
+  }
+  
+  return {
+    isValid: errors.length === 0,
+    errors
+  };
+}
+
 function backupData() {
   const data = {
     shops: getShops(),

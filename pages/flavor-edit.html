@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>フレーバー編集 | シーシャ管理</title>
+  <link rel="stylesheet" href="../src/styles/global.css">
+  <link rel="stylesheet" href="../src/styles/flavor-edit.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../pages/index.html" class="site-title">シーシャ管理</a>
+        <nav class="nav">
+          <a href="../pages/index.html" class="nav-link">ホーム</a>
+          <a href="../pages/shop-list.html" class="nav-link">店舗管理</a>
+          <a href="../pages/flavor-list.html" class="nav-link active">フレーバー管理</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- パンくずナビ -->
+  <nav class="breadcrumb">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li class="breadcrumb-item">
+          <a href="../pages/index.html" class="breadcrumb-link">ホーム</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="../pages/flavor-list.html" class="breadcrumb-link">フレーバー一覧</a>
+        </li>
+        <li class="breadcrumb-item">
+          <span class="breadcrumb-current" id="breadcrumb-current">新規フレーバー</span>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- メインコンテンツ -->
+  <main class="main">
+    <div class="container">
+      <div class="flavor-edit-container">
+        <!-- ヘッダー -->
+        <div class="flavor-edit-header">
+          <h1 class="flavor-edit-title" id="page-title">新規フレーバーの追加</h1>
+          <div class="flavor-edit-actions">
+            <div class="save-indicator" id="save-indicator">
+              <span class="loading d-none" id="save-loading"></span>
+              <span id="save-status"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- バリデーションサマリー -->
+        <div class="validation-summary d-none" id="validation-summary">
+          <strong>入力内容を確認してください：</strong>
+          <ul class="validation-list" id="validation-list"></ul>
+        </div>
+
+        <!-- 成功メッセージ -->
+        <div class="alert alert-success d-none" id="success-message">
+          フレーバー情報を保存しました。
+        </div>
+
+        <!-- エラーメッセージ -->
+        <div class="alert alert-danger d-none" id="error-message">
+          <span id="error-text">保存中にエラーが発生しました。</span>
+        </div>
+
+        <!-- フォーム -->
+        <form class="flavor-edit-form" id="flavor-form" novalidate>
+          <!-- 基本情報セクション -->
+          <div class="form-section">
+            <h2 class="form-section-title">基本情報</h2>
+            
+            <!-- フレーバー名 -->
+            <div class="form-group">
+              <label for="flavor-name" class="form-label required">フレーバー名</label>
+              <div class="form-control-group">
+                <input
+                  type="text"
+                  id="flavor-name"
+                  name="name"
+                  class="form-control"
+                  placeholder="フレーバー名を入力してください"
+                  maxlength="100"
+                  required
+                >
+                <div class="invalid-feedback" id="name-error"></div>
+                <div class="character-count">
+                  <span id="name-count">0</span>/100文字
+                </div>
+              </div>
+            </div>
+
+            <!-- フレーバー組み合わせ -->
+            <div class="form-group">
+              <label for="flavor-ingredients" class="form-label required">フレーバー組み合わせ</label>
+              <div class="form-control-group">
+                <div class="tag-input-container">
+                  <input
+                    type="text"
+                    id="flavor-ingredients"
+                    class="form-control tag-input"
+                    placeholder="フレーバーを入力してEnterキーで追加"
+                  >
+                  <button type="button" class="btn-add-tag" id="add-ingredient-btn">追加</button>
+                </div>
+                <div class="tags-container" id="ingredients-tags"></div>
+                <div class="invalid-feedback" id="flavors-error"></div>
+                <div class="form-help-text">例：ダブルアップル、ミント、グレープなど</div>
+              </div>
+            </div>
+
+            <!-- 評価 -->
+            <div class="form-group">
+              <label class="form-label required">評価</label>
+              <div class="form-control-group">
+                <div class="rating-container" id="rating-container">
+                  <button type="button" class="rating-star" data-value="1">★</button>
+                  <button type="button" class="rating-star" data-value="2">★</button>
+                  <button type="button" class="rating-star" data-value="3">★</button>
+                  <button type="button" class="rating-star" data-value="4">★</button>
+                  <button type="button" class="rating-star" data-value="5">★</button>
+                </div>
+                <div class="rating-text" id="rating-text">評価を選択してください</div>
+                <div class="invalid-feedback" id="score-error"></div>
+                <input type="hidden" name="score" id="score-input">
+              </div>
+            </div>
+          </div>
+
+          <!-- 詳細情報セクション -->
+          <div class="form-section">
+            <h2 class="form-section-title">詳細情報</h2>
+            
+            <!-- 関連店舗 -->
+            <div class="form-group">
+              <label for="shop-select" class="form-label">関連店舗</label>
+              <div class="form-control-group">
+                <select id="shop-select" name="shopId" class="form-control">
+                  <option value="">店舗を選択してください</option>
+                </select>
+                <div class="invalid-feedback" id="shop-error"></div>
+                <div class="form-help-text">このフレーバーを楽しんだ店舗（任意）</div>
+              </div>
+            </div>
+
+            <!-- 喫煙日時 -->
+            <div class="form-group">
+              <label for="smoked-at" class="form-label">喫煙日時</label>
+              <div class="form-control-group">
+                <input
+                  type="datetime-local"
+                  id="smoked-at"
+                  name="smokedAt"
+                  class="form-control"
+                >
+                <div class="invalid-feedback" id="smoked-at-error"></div>
+                <div class="form-help-text">このフレーバーを楽しんだ日時（任意）</div>
+              </div>
+            </div>
+
+            <!-- メモ -->
+            <div class="form-group">
+              <label for="flavor-memo" class="form-label">メモ</label>
+              <div class="form-control-group">
+                <textarea
+                  id="flavor-memo"
+                  name="memo"
+                  class="form-control"
+                  rows="4"
+                  placeholder="味の感想、雰囲気、一緒にいた人など..."
+                  maxlength="1000"
+                ></textarea>
+                <div class="invalid-feedback" id="memo-error"></div>
+                <div class="character-count">
+                  <span id="memo-count">0</span>/1000文字
+                </div>
+              </div>
+            </div>
+
+            <!-- タグ -->
+            <div class="form-group">
+              <label for="flavor-tags" class="form-label">タグ</label>
+              <div class="form-control-group">
+                <div class="tag-input-container">
+                  <input
+                    type="text"
+                    id="flavor-tags"
+                    class="form-control tag-input"
+                    placeholder="タグを入力してEnterキーで追加"
+                  >
+                  <button type="button" class="btn-add-tag" id="add-tag-btn">追加</button>
+                </div>
+                <div class="tags-container" id="tags-container"></div>
+                <div class="invalid-feedback" id="tags-error"></div>
+                <div class="form-help-text">例：フルーツ、爽やか、初心者向け、甘い</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- プレビューセクション -->
+          <div class="preview-section" id="preview-section">
+            <h2 class="preview-title">プレビュー</h2>
+            <div class="flavor-preview-card" id="flavor-preview">
+              <div class="flavor-preview-name" id="preview-name">フレーバー名が入力されていません</div>
+              <div class="flavor-preview-rating" id="preview-rating">
+                <span class="preview-stars">☆☆☆☆☆</span>
+                <span class="preview-score">未評価</span>
+              </div>
+              <div class="flavor-preview-ingredients" id="preview-ingredients" style="display: none;">
+                <strong>フレーバー：</strong>
+                <div class="preview-tags" id="preview-ingredients-tags"></div>
+              </div>
+              <div class="flavor-preview-shop" id="preview-shop" style="display: none;">
+                <strong>店舗：</strong>
+                <span id="preview-shop-text"></span>
+              </div>
+              <div class="flavor-preview-smoked-at" id="preview-smoked-at" style="display: none;">
+                <strong>喫煙日時：</strong>
+                <span id="preview-smoked-at-text"></span>
+              </div>
+              <div class="flavor-preview-memo" id="preview-memo" style="display: none;">
+                <strong>メモ：</strong>
+                <span id="preview-memo-text"></span>
+              </div>
+              <div class="flavor-preview-tags" id="preview-tags" style="display: none;">
+                <strong>タグ：</strong>
+                <div class="preview-tags" id="preview-tags-container"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- フォームアクション -->
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" id="cancel-btn">
+              キャンセル
+            </button>
+            <button type="submit" class="btn btn-primary" id="save-btn">
+              <span class="loading d-none" id="submit-loading"></span>
+              <span id="submit-text">保存</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="../src/scripts/storage.js"></script>
+  <script src="../src/scripts/flavor-edit.js"></script>
+</body>
+</html>
