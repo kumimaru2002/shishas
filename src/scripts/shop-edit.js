@@ -338,7 +338,7 @@ class ShopEditController {
           this.showSuccess('店舗情報を更新しました。');
           this.isDirty = false;
           setTimeout(() => {
-            window.location.href = `../pages/shop-detail.html?id=${this.shopId}`;
+            window.location.href = '../pages/shop-list.html';
           }, 1500);
         } else {
           this.showError('店舗の更新に失敗しました。');
@@ -348,7 +348,7 @@ class ShopEditController {
         this.showSuccess('新しい店舗を追加しました。');
         this.isDirty = false;
         setTimeout(() => {
-          window.location.href = `../pages/shop-detail.html?id=${newShop.id}`;
+          window.location.href = '../pages/shop-list.html';
         }, 1500);
       }
     } catch (error) {
@@ -365,11 +365,7 @@ class ShopEditController {
       if (!confirmed) return;
     }
 
-    if (this.isEditing && this.shopId) {
-      window.location.href = `../pages/shop-detail.html?id=${this.shopId}`;
-    } else {
-      window.location.href = '../pages/shop-list.html';
-    }
+    window.location.href = '../pages/shop-list.html';
   }
 
   scheduleAutoSave() {
